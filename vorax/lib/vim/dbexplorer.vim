@@ -254,6 +254,8 @@ function! Vorax_DbExplorerClick(path)
             let subdir = 'tables'
         elseif type == 'VIEW'
             let subdir = 'views'
+        elseif type == 'TYPE' || type == 'TYPE_SPEC' || type == 'TYPE_BODY'
+            let subdir = 'types'
         else
             let subdir = ''
         endif
