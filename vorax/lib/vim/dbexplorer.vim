@@ -239,7 +239,26 @@ function! Vorax_DbExplorerClick(path)
       let type = "MATERIALIZED_VIEW"
     endif
     let fname = object_name . '.' . s:utils.ExtensionForType(type)
+    if !exists('g:vorax_save_source_dir')
     let tname = substitute(fnamemodify(tempname(), ':h:p:8'), '\\', '/', 'g') . '/' . fname
+    else
+        if type == 'PACKAGE' || type == 'PACKAGE_SPEC' || type == 'PACKAGE_BODY'
+            let subdir = 'packages'
+        elseif type = 'FUNCTION'
+            let subdir = 'functions'
+        elseif type = 'PROCEDURE'
+            let subdir = 'procedures'
+        elseif type = 'TRIGGER'
+            let subdir = 'triggers'
+        elseif type = 'TABLE'
+            let subdir = 'tables'
+        elseif type = 'VIEW'
+            let subdir = 'views'
+        else
+            let subdir = ''
+        endif
+        let tname = g:vorax_save_source_dir . '/' . &titlestring . '/' . subdir . '/' .  fname
+    endif
     let bwn = bufwinnr('^' . fname . '$')
     silent! call s:log.debug('bwn=' . bwn)
     if bwn == -1
