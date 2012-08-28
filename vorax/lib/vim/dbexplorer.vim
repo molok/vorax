@@ -240,19 +240,19 @@ function! Vorax_DbExplorerClick(path)
     endif
     let fname = object_name . '.' . s:utils.ExtensionForType(type)
     if !exists('g:vorax_save_source_dir')
-    let tname = substitute(fnamemodify(tempname(), ':h:p:8'), '\\', '/', 'g') . '/' . fname
+        let tname = substitute(fnamemodify(tempname(), ':h:p:8'), '\\', '/', 'g') . '/' . fname
     else
         if type == 'PACKAGE' || type == 'PACKAGE_SPEC' || type == 'PACKAGE_BODY'
             let subdir = 'packages'
-        elseif type = 'FUNCTION'
+        elseif type == 'FUNCTION'
             let subdir = 'functions'
-        elseif type = 'PROCEDURE'
+        elseif type == 'PROCEDURE'
             let subdir = 'procedures'
-        elseif type = 'TRIGGER'
+        elseif type == 'TRIGGER'
             let subdir = 'triggers'
-        elseif type = 'TABLE'
+        elseif type == 'TABLE'
             let subdir = 'tables'
-        elseif type = 'VIEW'
+        elseif type == 'VIEW'
             let subdir = 'views'
         else
             let subdir = ''
