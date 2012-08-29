@@ -52,7 +52,9 @@ let s:handler = Vorax_GetEventHandler()
 " just focused.
 function s:rwin.FocusResultsWindow(toggle) dict
   silent! call s:log.trace('start s:rwin.FocusResultsWindow()')
-  let result_buf_nr = bufnr('^' . s:vorax_result_bufname . '$')
+  "let result_buf_nr = bufnr('^' . s:vorax_result_bufname . '$')
+  " sometimes this breaks, I really don't know why
+  let result_buf_nr = bufnr(s:vorax_result_bufname)
   silent! call s:log.debug('result_buf_nr='.result_buf_nr)
   if result_buf_nr == -1
     " the result buffer was closed, create a new one
