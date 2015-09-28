@@ -260,7 +260,7 @@ function! Vorax_DbExplorerClick(path)
             let subdir = ''
         endif
         if has_key(g:vorax_save_source, &titlestring) == 1
-            let tname = g:vorax_save_source[&titlestring] . '/' . &titlestring . '/' . subdir . '/' .  fname
+            let tname = g:vorax_save_source[&titlestring] . '/' . subdir . '/' .  fname
         else
             let tname = g:vorax_save_source_dir . '/' . &titlestring . '/' . subdir . '/' .  fname
         endif
