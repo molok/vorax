@@ -259,7 +259,11 @@ function! Vorax_DbExplorerClick(path)
         else
             let subdir = ''
         endif
-        let tname = g:vorax_save_source_dir . '/' . &titlestring . '/' . subdir . '/' .  fname
+        if has_key(g:vorax_save_source, &titlestring) == 1
+            let tname = g:vorax_save_source[&titlestring] . '/' . &titlestring . '/' . subdir . '/' .  fname
+        else
+            let tname = g:vorax_save_source_dir . '/' . &titlestring . '/' . subdir . '/' .  fname
+        endif
     endif
     let bwn = bufwinnr('^' . fname . '$')
     silent! call s:log.debug('bwn=' . bwn)
